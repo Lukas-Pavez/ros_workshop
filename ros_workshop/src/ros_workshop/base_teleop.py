@@ -12,6 +12,8 @@ class BaseController(object):
 
     def joy_callback(self, msg):
         rospy.loginfo(msg)
+        self.cmd.linear.x = msg.axes[1]
+        self.pub.publish(self.cmd)
 
 def main():
     rospy.init_node('base_controller')
